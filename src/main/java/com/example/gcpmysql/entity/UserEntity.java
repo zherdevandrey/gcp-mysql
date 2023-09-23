@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue
     private int id;
@@ -15,10 +15,10 @@ public class User {
     private int age;
     private String name;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(int age, String name) {
+    public UserEntity(int age, String name) {
         this.age = age;
         this.name = name;
     }

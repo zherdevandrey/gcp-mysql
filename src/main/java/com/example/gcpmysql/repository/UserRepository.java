@@ -1,7 +1,7 @@
 package com.example.gcpmysql.repository;
 
-import com.example.gcpmysql.entity.User;
+import com.example.gcpmysql.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 }

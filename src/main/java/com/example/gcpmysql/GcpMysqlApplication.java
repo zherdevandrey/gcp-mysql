@@ -1,6 +1,6 @@
 package com.example.gcpmysql;
 
-import com.example.gcpmysql.entity.User;
+import com.example.gcpmysql.entity.UserEntity;
 import com.example.gcpmysql.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -19,9 +19,7 @@ public class GcpMysqlApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        for (int i = 0 ; i < 10; i ++) {
-            User user = new User(i, "user#" + i);
-            userRepository.save(user);
-        }
+        UserEntity userEntity = new UserEntity(1, "user");
+        userRepository.save(userEntity);
     }
 }
