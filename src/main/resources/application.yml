@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${10.97.112.203:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:mysql}
+    username: ${MYSQL_USER:admin}
+    password: ${MYSQL_PASSWORD:admin}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379

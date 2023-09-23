@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gcp-mysql
+  name: gcp-mysql
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcp-mysql
+  template:
+    metadata:
+      labels:
+        app: gcp-mysql
+    spec:
+      containers:
+        - name: gcp-mysql
+          image: zherdev/gcp-mysql:0.0.1-SNAPSHOT
+          imagePullPolicy: Always
+          env:
+            - name: MYSQL_HOST
+              value: mysql
+            - name: MYSQL_DATABASE
+              value: mysql
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: test1234
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: gcp-mysql
+  name: gcp-mysql
+  namespace: default
+spec:
+  ports:
+    - nodePort: 32487
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: gcp-mysql
+  sessionAffinity: ClientIP
+  type: LoadBalancer
